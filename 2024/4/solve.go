@@ -90,8 +90,9 @@ func getWords(x, y, dirx, diry, target int) [][4]int {
 			var words [][4]int
 			directions := [][2]int{{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}}
 			for _, dir := range directions {
-				newWords := getWords(x+dir[0], y+dir[1], dir[0], dir[1], target+1)
-				words = append(words, newWords...)
+				if getWords(x+dir[0], y+dir[1], dir[0], dir[1], target+1) != nil {
+					words = append(words, [4]int{x + dir[0], y + dir[1], dir[0], dir[1]})
+				}
 			}
 			return words
 		} else {
